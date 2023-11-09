@@ -10,11 +10,17 @@
          <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900">
                <h1>HOLA MUNDAZOOOO list vaucher {{$title}}</h1>
-               <h1>{{$name}}</h1>
-               <h1>{{$email}}</h1>
-               <input type="text" wire:model='name'>
-               <input type="text" wire:model='email'>
-               <button wire:click='save'>SAVE</button>
+
+               <div>
+                  @foreach ($users as $user)
+                  <div wire:key="{{ $user->id }}">
+                     <h1>{{$user->name}}</h1>
+                     <h1>{{$user->email}}</h1>
+                     <button wire:click="delete({{ $user->id }})">Delete</button> 
+                  </div>
+                  @endforeach
+               </div>
+
             </div>
          </div>
       </div>

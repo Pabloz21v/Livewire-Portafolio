@@ -9,20 +9,12 @@ class ListVaucher extends Component
 {
 
     public $title = "hola mundo";
-    public $name  = "bbbb";
-    public $email = "aaaaa";
 
-    public function save()
-    {
-        $this->name = "gato";
-        $this->email = "perro";
-
-
-        // $this->reset('name');
-        // $this->reset('email');
-        //  $name = $this->name ;
-        // $email= $this->email ;
-    }
+    public $users;
+    public $user;
+    public $name;
+    public $email;
+    public $password;
 
     public $count = 1;
 
@@ -36,12 +28,27 @@ class ListVaucher extends Component
         $this->count--;
     }
 
-    // public function mount(User $user)
-    // {
-    //     $this->fill(
-    //         $user->only(['name', 'email'])
-    //     );
-    // }
+    public function mount(User $user)
+    {
+
+        $this->users = User::get();
+
+        //  $this->users = $user;
+        // $this->fill(
+        //     $user->only(['name', 'email'])
+        // );
+    }
+
+    public function delete($id)
+    {
+        $user = User::findOrFail($id);
+ 
+        $this->authorize('delete', $user);
+ 
+        $user->delete();
+    }
+
+
     public function render()
     {
         return view('livewire.list-vaucher');
