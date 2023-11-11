@@ -16,7 +16,8 @@
                   <div wire:key="{{ $user->id }}">
                      <h1>{{$user->name}}</h1>
                      <h1>{{$user->email}}</h1>
-                     <button wire:click="delete({{ $user->id }})">Delete</button> 
+                     <x-primary-button wire:click="delete({{ $user->id }})">Delete</x-primary-button> 
+                     
                   </div>
                   @endforeach
                </div>
